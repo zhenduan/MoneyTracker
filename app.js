@@ -420,46 +420,53 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 
   // Delete button event
   const itemDeleteSubmit = function (e) {
-    // Get current item
-    const currentItem = ItemCtrl.getCurrentItem();
+    if (confirm("Are you sure to delete?")) {
+      // Get current item
+      const currentItem = ItemCtrl.getCurrentItem();
 
-    // Delete from data structure
-    ItemCtrl.deleteItem(clientInformation);
+      // Delete from data structure
+      ItemCtrl.deleteItem(clientInformation);
 
-    // Delete from UI
-    UICtrl.deleteListItem(currentItem.id);
+      // Delete from UI
+      UICtrl.deleteListItem(currentItem.id);
 
-    // Get total expenses
-    const totalexpenses = ItemCtrl.getTotalexpenses();
-    // Add total expenses to UI
-    UICtrl.showTotalexpenses(totalexpenses);
+      // Get total expenses
+      const totalexpenses = ItemCtrl.getTotalexpenses();
+      // Add total expenses to UI
+      UICtrl.showTotalexpenses(totalexpenses);
 
-    // Delete from local storage
-    StorageCtrl.deleteItemFromStorage(currentItem.id);
+      // Delete from local storage
+      StorageCtrl.deleteItemFromStorage(currentItem.id);
 
-    UICtrl.clearEditState();
+      UICtrl.clearEditState();
 
-    e.preventDefault();
+      e.preventDefault();
+    }
+
   };
 
   // Clear items event
   const clearAllItemsClick = function () {
-    // Delete all items from data structure
-    ItemCtrl.clearAllItems();
+    if (confirm("Are you sure to clear all?")) {
+      // Delete all items from data structure
+      ItemCtrl.clearAllItems();
 
-    // Get total expenses
-    const totalexpenses = ItemCtrl.getTotalexpenses();
-    // Add total expenses to UI
-    UICtrl.showTotalexpenses(totalexpenses);
+      // Get total expenses
+      const totalexpenses = ItemCtrl.getTotalexpenses();
+      // Add total expenses to UI
+      UICtrl.showTotalexpenses(totalexpenses);
 
-    // Remove from UI
-    UICtrl.removeItems();
+      // Remove from UI
+      UICtrl.removeItems();
 
-    // Clear from local storage
-    StorageCtrl.clearItemsFromStorage();
+      // Clear from local storage
+      StorageCtrl.clearItemsFromStorage();
 
-    // Hide UL
-    UICtrl.hideList();
+      // Hide UL
+      UICtrl.hideList();
+    }
+
+
   };
 
   // Public methods
