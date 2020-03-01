@@ -88,7 +88,7 @@ const ItemCtrl = (function () {
       }
 
       // expenses to number
-      expenses = parseInt(expenses);
+      expenses = parseFloat(expenses);
 
       // Create new item
       newItem = new Item(ID, name, expenses);
@@ -110,7 +110,7 @@ const ItemCtrl = (function () {
     },
     updateItem: function (name, expenses) {
       // expenses to number
-      expenses = parseInt(expenses);
+      expenses = parseFloat(expenses);
 
       let found = null;
 
@@ -233,7 +233,7 @@ const UICtrl = (function () {
         if (itemID === `item-${item.id}`) {
           document.querySelector(
             `#${itemID}`
-          ).innerHTML = `<strong>${item.name}: </strong> <em>${item.expenses} expenses</em>
+          ).innerHTML = `<strong>${item.name}: </strong> $ <em>${item.expenses}</em>
           <a href="#" class="secondary-content">
             <i class="edit-item fa fa-pencil"></i>
           </a>`;
@@ -379,7 +379,7 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
       const listIdArr = listId.split("-");
 
       // Get the actual id
-      const id = parseInt(listIdArr[1]);
+      const id = parseFloat(listIdArr[1]);
 
       // Get item
       const itemToEdit = ItemCtrl.getItemById(id);
